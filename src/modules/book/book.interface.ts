@@ -1,4 +1,4 @@
-interface IBook {
+export interface IBook {
   title: string;
   author: string;
   genre:
@@ -9,7 +9,7 @@ interface IBook {
     | "BIOGRAPHY"
     | "FANTASY";
   isbn: string;
-  description: string;
+  description?: string;
   copies: number;
   available: boolean;
 }
