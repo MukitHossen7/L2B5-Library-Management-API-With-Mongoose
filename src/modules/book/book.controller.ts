@@ -18,9 +18,25 @@ const createBook = async (req: Request, res: Response) => {
     });
   }
 };
+
 const getBooks = async (req: Request, res: Response) => {
   try {
-    const data = await Book.find();
+    const {
+      filter,
+      sort = "desc",
+      limit = 10,
+      sortBy = "createdAt",
+    } = req.query;
+
+    const filters: any = {};
+    if (filter) {
+      filters.genre = filter;
+    }
+
+    const data = await Book.find(filters)
+      .sort({ [sortBy as string]: sort === "desc" ? -1 : 1 })
+      .limit(Number(limit));
+
     res.status(201).json({
       success: true,
       message: "Books retrieved successfully",
