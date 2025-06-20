@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import { IBorrow } from "./borrow.interface";
 
 const borrowSchema = new Schema<IBorrow>({
@@ -10,10 +10,13 @@ const borrowSchema = new Schema<IBorrow>({
   quantity: {
     type: Number,
     required: true,
-    min: 0,
+    min: 1,
   },
   dueDate: {
     type: Date,
     required: true,
   },
 });
+
+const Borrow = model<IBorrow>("Borrow", borrowSchema);
+export default Borrow;
