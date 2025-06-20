@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import Book from "../book/book.model";
+import Borrow from "./borrow.model";
 
 const createBorrowBook = async (req: Request, res: Response) => {
   try {
-    const { book, quantity } = req.body;
+    const { book, quantity, dueDate } = req.body;
 
     const findBook = await Book.findById(book);
 
@@ -26,21 +27,28 @@ const createBorrowBook = async (req: Request, res: Response) => {
     }
 
     // Deduct the requested quantity from the book's available copies
-    await Book.findByIdAndUpdate(
-      book,
-      {
-        $inc: {
-          copies: -quantity,
+    if (book && quantity && dueDate && quantity) {
+      await Book.findByIdAndUpdate(
+        book,
+        {
+          $inc: {
+            copies: -quantity,
+          },
         },
-      },
-      { new: true }
-    );
+        { new: true, runValidators: true }
+      );
+    }
 
-    console.log(findBook);
+    // implement If copies become 0, update available to false using a static method
+    await Borrow.updateAvailability(book);
+
+    // Save the borrow record with all relevant details
+    const data = await Borrow.create({ book, quantity, dueDate });
 
     res.status(201).json({
       success: true,
       message: "Book borrowed successfully",
+      data,
     });
   } catch (error) {
     res.status(500).json({
