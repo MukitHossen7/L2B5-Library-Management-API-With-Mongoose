@@ -1,22 +1,17 @@
-Here is a complete, clear, and well-structured `README.md` file for your **Library Management API** project built with **Express**, **TypeScript**, and **MongoDB**. It explains what the project does, how to use it, features, and all necessary API details. ✅
-
----
-
-````markdown
-# 📚 Library Management API
+# Library Management API
 
 A powerful RESTful API built with **Express**, **TypeScript**, and **MongoDB (Mongoose)** that allows users to manage books and borrowing functionality in a library system.
 
 ---
 
-## 🚀 Features
+## Features
 
-- 🔐 Full CRUD for managing books
-- ✅ Validation with Mongoose Schema
-- 📊 Aggregation pipeline to summarize borrowed books
-- 🔁 Static method to control book availability
-- 🎯 Business logic enforcement (like stock check before borrowing)
-- 🧰 Mongoose middleware (pre/post) used
+- Full CRUD for managing books
+- Validation with Mongoose Schema
+- Aggregation pipeline to summarize borrowed books
+- Static method to control book availability
+- Business logic enforcement (like stock check before borrowing)
+- Mongoose middleware (pre/post) used
 - Filtering, sorting, and pagination in book listing
 - Easy-to-use endpoints with consistent responses
 
@@ -28,38 +23,41 @@ A powerful RESTful API built with **Express**, **TypeScript**, and **MongoDB (Mo
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
-- **Express.js** – Web framework
-- **TypeScript** – Type safety
-- **MongoDB** – NoSQL database
-- **Mongoose** – ODM for MongoDB
-- **ESLint + Prettier** – Code formatting and linting
+- **Node.js**
+- **Express.js**
+- **TypeScript**
+- **MongoDB**
+- **Mongoose**
+- **ts-node-dev**
+- **dotenv**
 
 ---
 
 ## Installation & Setup
 
-```bash
-# Clone the repository
-git clone https://github.com/your-username/library-management-api.git
+```
 
-# Navigate to the project directory
+git clone https://github.com/MukitHossen7/L2B5-Library-Management-API-With-Mongoose.git
+
+```
+
+```
 cd library-management-api
+```
 
-# Install dependencies
+```
 npm install
+```
 
-# Start the development server
+```
 npm run dev
 ```
-````
-
-Make sure you have a MongoDB connection string set in your `.env`:
 
 ```
-MONGODB_URI=mongodb://localhost:27017/library-management
-PORT=5000
+Make sure you have a MongoDB connection string set in your `.env`:
+
 ```
 
 ---
@@ -70,15 +68,15 @@ PORT=5000
 src/
 ├── modules/
 │   ├── book/
+│   │   ├── book.controller.ts
+        ├── book.interface.ts
 │   │   ├── book.model.ts
-        ├── book.model.ts
-│   │   ├── book.route.ts
-│   │   └── book.controller.ts
+│   │   └── book.route.ts
 │   ├── borrow/
+│   │   ├── borrow.controller.ts
+        ├── book.interface.ts
 │   │   ├── borrow.model.ts
-        ├── book.model.ts
-│   │   ├── borrow.route.ts
-│   │   └── borrow.controller.ts
+│   │   └── borrow.route.ts
 ├── routes/
 │   └── index.ts
 ├── app.ts
@@ -141,7 +139,7 @@ DELETE /api/books/:bookId
 
 ---
 
-### 📘 Borrow Endpoints
+### Borrow Endpoints
 
 #### 6. **Borrow a Book**
 
@@ -158,7 +156,7 @@ Request Body:
 }
 ```
 
-📌 **Business Logic Enforced**:
+**Business Logic Enforced**:
 
 - Checks if enough copies are available.
 - Deducts copies from the book.
@@ -174,7 +172,7 @@ Returns total borrowed quantities per book using aggregation pipeline.
 
 ---
 
-## ✅ Success Response Format
+## Success Response Format
 
 ```json
 {
@@ -184,7 +182,7 @@ Returns total borrowed quantities per book using aggregation pipeline.
 }
 ```
 
-## ❌ Error Response Format
+## Error Response Format
 
 ```json
 {
@@ -236,5 +234,9 @@ This project is licensed under the MIT License.
 
 ---
 
+
+```
+
+```
 
 ```
