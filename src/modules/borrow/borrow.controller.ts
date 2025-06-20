@@ -61,7 +61,29 @@ const createBorrowBook = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const getBorrowedBooks = async (req: Request, res: Response) => {};
+const getBorrowedBooks = async (req: Request, res: Response) => {
+  try {
+    const data = await Borrow.aggregate([
+      {
+        $group: {
+          _id: "$book",
+          totalQuantity: { $sum: 1 },
+        },
+      },
+    ]);
+    res.status(201).json({
+      success: true,
+      message: "Borrowed books summary retrieved successfully",
+      data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Borrowed books summary retrieved  failed",
+      success: false,
+      error,
+    });
+  }
+};
 
 export const borrowBookController = {
   createBorrowBook,
