@@ -19,7 +19,7 @@ const createBook = async (req: Request, res: Response) => {
   }
 };
 
-const getBooks = async (req: Request, res: Response) => {
+const getAllBooks = async (req: Request, res: Response) => {
   try {
     const {
       filter,
@@ -51,7 +51,65 @@ const getBooks = async (req: Request, res: Response) => {
   }
 };
 
+const getBookByID = async (req: Request, res: Response) => {
+  try {
+    const { bookId } = req.params;
+    const data = await Book.findById(bookId);
+    res.status(201).json({
+      success: true,
+      message: "Book retrieved successfully",
+      data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Book retrieved failed",
+      success: false,
+      error,
+    });
+  }
+};
+
+const updateBook = async (req: Request, res: Response) => {
+  try {
+    const { bookId } = req.params;
+    const payload = req.body;
+    const data = await Book.findByIdAndUpdate(bookId, payload, { new: true });
+    res.status(201).json({
+      success: true,
+      message: "Book updated successfully",
+      data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Book updated failed",
+      success: false,
+      error,
+    });
+  }
+};
+
+const deleteBook = async (req: Request, res: Response) => {
+  try {
+    const { bookId } = req.params;
+    const data = await Book.findByIdAndDelete(bookId);
+    res.status(201).json({
+      success: true,
+      message: "Book deleted successfully",
+      data: null,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Book deleted failed",
+      success: false,
+      error,
+    });
+  }
+};
+
 export const bookController = {
   createBook,
-  getBooks,
+  getAllBooks,
+  getBookByID,
+  updateBook,
+  deleteBook,
 };
