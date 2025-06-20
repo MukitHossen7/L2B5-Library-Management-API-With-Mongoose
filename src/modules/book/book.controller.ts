@@ -73,7 +73,11 @@ const updateBook = async (req: Request, res: Response) => {
   try {
     const { bookId } = req.params;
     const payload = req.body;
-    const data = await Book.findByIdAndUpdate(bookId, payload, { new: true });
+    const data = await Book.findByIdAndUpdate(bookId, payload, {
+      new: true,
+      runValidators: true,
+    });
+
     res.status(201).json({
       success: true,
       message: "Book updated successfully",
@@ -91,7 +95,7 @@ const updateBook = async (req: Request, res: Response) => {
 const deleteBook = async (req: Request, res: Response) => {
   try {
     const { bookId } = req.params;
-    const data = await Book.findByIdAndDelete(bookId);
+    await Book.findByIdAndDelete(bookId);
     res.status(201).json({
       success: true,
       message: "Book deleted successfully",
