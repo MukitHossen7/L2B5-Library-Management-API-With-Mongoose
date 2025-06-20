@@ -5,12 +5,12 @@ const bookSchema = new Schema<IBook>(
   {
     title: {
       type: String,
-      required: true,
+      required: [true, "title must be required"],
       trim: true,
     },
     author: {
       type: String,
-      required: true,
+      required: [true, "author must be required"],
       trim: true,
     },
     genre: {
@@ -26,11 +26,11 @@ const bookSchema = new Schema<IBook>(
         ],
         message: "{VALUE} is not a valid genre",
       },
-      required: true,
+      required: [true, "genre must be required"],
     },
     isbn: {
       type: String,
-      required: true,
+      required: [true, "isbn must be required"],
       unique: true,
       trim: true,
     },
@@ -40,8 +40,8 @@ const bookSchema = new Schema<IBook>(
     },
     copies: {
       type: Number,
-      required: true,
-      min: 0,
+      required: [true, "copies must be required"],
+      min: [0, "Copies must be a positive number"],
     },
     available: {
       type: Boolean,
