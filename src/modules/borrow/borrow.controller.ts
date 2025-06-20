@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Book from "../book/book.model";
 import Borrow from "./borrow.model";
 
-const createBorrowBook = async (req: Request, res: Response) => {
+const createBorrowBook = async (req: Request, res: Response): Promise<void> => {
   try {
     const { book, quantity, dueDate } = req.body;
 
@@ -10,20 +10,22 @@ const createBorrowBook = async (req: Request, res: Response) => {
 
     //check the book is available
     if (!findBook) {
-      return res.status(404).json({
+      res.status(404).json({
         message: "Book not found",
         success: false,
         error: "Invalid book ID",
       });
+      return;
     }
 
     //Verify the book has enough available copies.
     if (!((findBook?.copies as number) >= quantity)) {
-      return res.status(400).json({
+      res.status(400).json({
         message: "Book does not have enough available copies",
         success: false,
         error: "Not enough copies available",
       });
+      return;
     }
 
     // Deduct the requested quantity from the book's available copies
@@ -40,7 +42,7 @@ const createBorrowBook = async (req: Request, res: Response) => {
     }
 
     // implement If copies become 0, update available to false using a static method
-    await Borrow.updateAvailability(book);
+    await Borrow.updateAvailability(book as string);
 
     // Save the borrow record with all relevant details
     const data = await Borrow.create({ book, quantity, dueDate });
@@ -59,6 +61,9 @@ const createBorrowBook = async (req: Request, res: Response) => {
   }
 };
 
+const getBorrowedBooks = async (req: Request, res: Response) => {};
+
 export const borrowBookController = {
   createBorrowBook,
+  getBorrowedBooks,
 };

@@ -7,5 +7,5 @@ export interface IBorrow {
 }
 
 export interface UpdateAvailabilityMethod extends Model<IBorrow> {
-  updateAvailability(id: string): Promise<void>;
+  updateAvailability(id: string): void;
 }
