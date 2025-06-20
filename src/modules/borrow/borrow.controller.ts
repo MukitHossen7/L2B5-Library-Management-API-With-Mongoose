@@ -67,7 +67,28 @@ const getBorrowedBooks = async (req: Request, res: Response) => {
       {
         $group: {
           _id: "$book",
-          totalQuantity: { $sum: 1 },
+          totalQuantity: { $sum: "$quantity" },
+        },
+      },
+      {
+        $lookup: {
+          from: "books",
+          localField: "_id",
+          foreignField: "_id",
+          as: "book",
+        },
+      },
+      {
+        $unwind: "$book",
+      },
+      {
+        $project: {
+          totalQuantity: 1,
+          book: {
+            title: 1,
+            isbn: 1,
+          },
+          _id: 0,
         },
       },
     ]);
