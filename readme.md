@@ -1,6 +1,12 @@
 # Library Management API
 
-A powerful RESTful API built with **Express**, **TypeScript**, and **MongoDB (Mongoose)** that allows users to manage books and borrowing functionality in a library system.
+## Live Link
+
+```
+https://l2-b5-library-management-api.vercel.app/
+```
+
+A clean and efficient **RESTful** API built with **Express**, **TypeScript**, and **MongoDB (Mongoose)** to manage a library system. It supports full CRUD operations for books and borrow records, with features like filtering, sorting, and data aggregation to track borrowing activities.
 
 ---
 
@@ -11,15 +17,8 @@ A powerful RESTful API built with **Express**, **TypeScript**, and **MongoDB (Mo
 - Aggregation pipeline to summarize borrowed books
 - Static method to control book availability
 - Business logic enforcement (like stock check before borrowing)
-- Mongoose middleware (pre/post) used
 - Filtering, sorting, and pagination in book listing
 - Easy-to-use endpoints with consistent responses
-
----
-
-## Objective
-
-> Build a **Library Management System** that handles **book inventory** and **borrow tracking** with full validation, business logic, and clean architecture.
 
 ---
 
@@ -201,42 +200,4 @@ Returns total borrowed quantities per book using aggregation pipeline.
 
 ---
 
-## 📌 Important Notes
-
-- ⚠️ **Genres must be one of:** FICTION, NON_FICTION, SCIENCE, HISTORY, BIOGRAPHY, FANTASY
-- ❗ **Copies** must be a non-negative number.
-- 🔁 Uses Mongoose `pre` and `post` middleware for hooks.
-- 📊 Uses aggregation to fetch borrowing summary report.
-
 ---
-
-## 🧠 Additional Tips
-
-- Always validate incoming data before processing.
-- Use Postman or Thunder Client to test endpoints.
-- Implement pagination for scalable queries.
-- Modular architecture improves maintainability.
-
----
-
-## 👨‍💻 Author
-
-Developed as part of an academic assignment by _\[Your Name]_
-Feel free to fork, contribute, or use this boilerplate in your own projects.
-
----
-
-## 📃 License
-
-This project is licensed under the MIT License.
-
-```
-
----
-
-
-```
-
-```
-
-```
