@@ -34,6 +34,23 @@ A clean and efficient **RESTful** API built with **Express**, **TypeScript**, an
 
 ---
 
+## Dependencies
+
+- "dotenv": "^16.5.0",
+- "express": "^5.1.0",
+- "mongoose": "^8.16.0",
+- "ts-node-dev": "^2.0.0"
+
+---
+
+## DevDependencies
+
+- "@types/cors": "^2.8.19",
+- "@types/express": "^5.0.3",
+- "typescript": "^5.8.3"
+
+---
+
 ## Installation & Setup
 
 ```
@@ -169,6 +186,28 @@ GET /api/borrow
 
 Returns total borrowed quantities per book using aggregation pipeline.
 
+```json
+Response Body:
+{
+  "data": [
+    {
+      "book": {
+        "title": "The Theory of Everything",
+        "isbn": "9780553380163"
+      },
+      "totalQuantity": 5
+    },
+    {
+      "book": {
+        "title": "1984",
+        "isbn": "9780451524935"
+      },
+      "totalQuantity": 3
+    }
+  ]
+}
+```
+
 ---
 
 ## Success Response Format
@@ -197,7 +236,3 @@ Returns total borrowed quantities per book using aggregation pipeline.
   }
 }
 ```
-
----
-
----
