@@ -42,7 +42,7 @@ git clone https://github.com/MukitHossen7/L2B5-Library-Management-API-With-Mongo
 ```
 
 ```
-cd library-management-api
+cd L2B5-Library-Management-API-With-Mongoose
 ```
 
 ```
