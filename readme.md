@@ -1,14 +1,14 @@
 # Library Management API
 
+A clean and efficient **RESTful** API built with **Express**, **TypeScript**, and **MongoDB (Mongoose)** to manage a library system. It supports full CRUD operations for books and borrow records, with features like filtering, sorting, and data aggregation to track borrowing activities.
+
+---
+
 ## Live Link
 
 ```
 https://l2-b5-library-management-api.vercel.app/
 ```
-
-A clean and efficient **RESTful** API built with **Express**, **TypeScript**, and **MongoDB (Mongoose)** to manage a library system. It supports full CRUD operations for books and borrow records, with features like filtering, sorting, and data aggregation to track borrowing activities.
-
----
 
 ## Features
 
@@ -34,23 +34,6 @@ A clean and efficient **RESTful** API built with **Express**, **TypeScript**, an
 
 ---
 
-## Dependencies
-
-- "dotenv": "^16.5.0",
-- "express": "^5.1.0",
-- "mongoose": "^8.16.0",
-- "ts-node-dev": "^2.0.0"
-
----
-
-## DevDependencies
-
-- "@types/cors": "^2.8.19",
-- "@types/express": "^5.0.3",
-- "typescript": "^5.8.3"
-
----
-
 ## Installation & Setup
 
 ```
@@ -72,7 +55,7 @@ npm run dev
 ```
 
 ```
-Make sure you have a MongoDB connection string set in your `.env`:
+Make sure you have a MongoDB connection string set in your `.env` file:
 
 ```
 
@@ -236,3 +219,22 @@ Response Body:
   }
 }
 ```
+
+---
+
+## Dependencies
+
+- "dotenv": "^16.5.0",
+- "express": "^5.1.0",
+- "mongoose": "^8.16.0",
+- "ts-node-dev": "^2.0.0"
+
+---
+
+## DevDependencies
+
+- "@types/cors": "^2.8.19",
+- "@types/express": "^5.0.3",
+- "typescript": "^5.8.3"
+
+---
