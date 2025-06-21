@@ -14,11 +14,10 @@ https://l2-b5-library-management-api.vercel.app/
 
 - Full CRUD for managing books
 - Validation with Mongoose Schema
-- Aggregation pipeline to summarize borrowed books
+- Filter and sort books by genre, availability, or creation date
+- Aggregation pipeline to summarize borrowed books(total quantity borrowed per book)
 - Static method to control book availability
-- Business logic enforcement (like stock check before borrowing)
-- Filtering, sorting, and pagination in book listing
-- Easy-to-use endpoints with consistent responses
+- Borrow books with due dates and quantity tracking
 
 ---
 
@@ -236,5 +235,3 @@ Response Body:
 - "@types/cors": "^2.8.19",
 - "@types/express": "^5.0.3",
 - "typescript": "^5.8.3"
-
----
