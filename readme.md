@@ -16,8 +16,9 @@ https://l2-b5-library-management-api.vercel.app/
 - Validation with Mongoose Schema
 - Filter and sort books by genre, availability, or creation date
 - Aggregation pipeline to summarize borrowed books(total quantity borrowed per book)
-- Static method to control book availability
+- Create a static method to check book availability. If the book is not available, update its availability status to false.
 - Borrow books with due dates and quantity tracking
+- Use a post hook to decrease the number of available copies when a borrow is posted.
 
 ---
 

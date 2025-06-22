@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
-import { IBook } from "./book.interface";
+import { IBook, UpdateAvailabilityMethod } from "./book.interface";
 
-const bookSchema = new Schema<IBook>(
+const bookSchema = new Schema<IBook, UpdateAvailabilityMethod>(
   {
     title: {
       type: String,
@@ -54,5 +54,26 @@ const bookSchema = new Schema<IBook>(
   }
 );
 
-const Book = model<IBook>("Book", bookSchema);
+// implement If copies become 0, update available to false using a static method
+bookSchema.static(
+  "updateAvailability",
+  async function updateAvailabilityFunction(id: string) {
+    const findBook = await Book.findById(id);
+    if (findBook && findBook?.copies === 0 && findBook.available !== false) {
+      // findBook.available = false;
+      // await findBook.save();
+      await Book.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            available: false,
+          },
+        },
+        { runValidators: true }
+      );
+    }
+  }
+);
+
+const Book = model<IBook, UpdateAvailabilityMethod>("Book", bookSchema);
 export default Book;

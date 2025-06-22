@@ -27,23 +27,6 @@ const createBorrowBook = async (req: Request, res: Response): Promise<void> => {
       });
       return;
     }
-
-    // Deduct the requested quantity from the book's available copies
-    if (book && quantity && dueDate && quantity) {
-      await Book.findByIdAndUpdate(
-        book,
-        {
-          $inc: {
-            copies: -quantity,
-          },
-        },
-        { new: true, runValidators: true }
-      );
-    }
-
-    // implement If copies become 0, update available to false using a static method
-    await Borrow.updateAvailability(book as string);
-
     // Save the borrow record with all relevant details
     const data = await Borrow.create({ book, quantity, dueDate });
 
