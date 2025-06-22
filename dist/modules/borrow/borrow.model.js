@@ -33,16 +33,16 @@ const borrowSchema = new mongoose_1.Schema({
     timestamps: true,
     versionKey: false,
 });
-borrowSchema.static("updateAvailability", function updateAvailabilityFunction(id) {
+// Deduct the requested quantity from the book's available copies use post middleware hook
+borrowSchema.post("save", function (doc, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const findBook = yield book_model_1.default.findById(id);
-        if ((findBook === null || findBook === void 0 ? void 0 : findBook.copies) === 0) {
-            yield book_model_1.default.findByIdAndUpdate(id, {
-                $set: {
-                    available: false,
-                },
-            }, { runValidators: true });
-        }
+        yield book_model_1.default.findByIdAndUpdate(doc.book, {
+            $inc: {
+                copies: -doc.quantity,
+            },
+        }, { new: true, runValidators: true });
+        yield book_model_1.default.updateAvailability(doc.book.toString());
+        next();
     });
 });
 const Borrow = (0, mongoose_1.model)("Borrow", borrowSchema);

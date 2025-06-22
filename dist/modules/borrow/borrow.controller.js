@@ -37,16 +37,6 @@ const createBorrowBook = (req, res) => __awaiter(void 0, void 0, void 0, functio
             });
             return;
         }
-        // Deduct the requested quantity from the book's available copies
-        if (book && quantity && dueDate && quantity) {
-            yield book_model_1.default.findByIdAndUpdate(book, {
-                $inc: {
-                    copies: -quantity,
-                },
-            }, { new: true, runValidators: true });
-        }
-        // implement If copies become 0, update available to false using a static method
-        yield borrow_model_1.default.updateAvailability(book);
         // Save the borrow record with all relevant details
         const data = yield borrow_model_1.default.create({ book, quantity, dueDate });
         res.status(201).json({
